@@ -10,7 +10,7 @@ class BanknotesStorage:
         self.bill_amount = self.refresh_bill_value()
 
     def get_storage_banknotes(self):
-        return self.storage_banknotes.values()
+        return self.storage_banknotes
 
     def get_bill_amount(self):
         return self.bill_amount

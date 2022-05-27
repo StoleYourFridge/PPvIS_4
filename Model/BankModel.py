@@ -80,7 +80,7 @@ class BankModel:
                  increase_value):
         if get_from_object_attribute == "bill" and get_from_object.bill < increase_value:
             return "Incorrect"
-        elif get_to_object_attribute == "storage" and get_from_object.storage < increase_value:
+        elif get_from_object_attribute == "storage" and get_from_object.storage < increase_value:
             return "Incorrect"
         if get_from_object_attribute == "bill" and get_to_object_attribute == "storage":
             get_from_object.bill -= increase_value
@@ -93,7 +93,7 @@ class BankModel:
             get_to_object.storage += increase_value
         elif get_from_object_attribute == "storage" and get_to_object_attribute == "bill":
             get_from_object.storage -= increase_value
-            get_to_object.bill += increase_value.get_bill_amount
+            get_to_object.bill += increase_value.get_bill_amount()
         return "Correct"
 
     def increase_bank_storage_with_user_storage(self,
@@ -145,6 +145,9 @@ class BankModel:
                                   "storage",
                                   "storage",
                                   BanknotesStorage(storage))
+
+    def get_authorized(self):
+        return self.authorized
 
     def get_user_phone_bill(self):
         if not self.authorized:

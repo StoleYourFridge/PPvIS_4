@@ -126,6 +126,9 @@ class BankController:
                                                                                       storage_denominations)}
         return self.model.increase_user_storage_with_bank_storage(storage_denominations)
 
+    def get_authorized(self):
+        return self.model.get_authorized()
+
     def get_user_phone_bill(self):
         return self.model.get_user_phone_bill()
 
@@ -146,19 +149,25 @@ class BankController:
 
     def write_to_file(self):
         info = self.model.get_info()
-        with open("Model/BankData.json", "w") as f:
-            json.dump(info, f)
+        with open("../Model/BankData.json", "w") as f:
+            json.dump(info, f, indent=5)
 
     def read_from_file(self):
-        with open("Model/BankData.json", "r") as f:
+        with open("../Model/BankData.json", "r") as f:
             info = json.load(f)
-        self.model.set_current_working_entity("current working entity")
-        self.model.set_authorized(info["authorized"])
+        if len(info) == 0:
+            return
+        if info["current working entity"]:
+            self.model.set_current_working_entity(info["current working entity"])
+        if info["authorized"]:
+            self.model.set_authorized(info["authorized"])
         entities = info["entities"]
         for entity in entities:
+            new_bank_storage = {int(key): value for key, value in entity["account"]["bank storage"].items()}
+            new_user_storage = {int(key): value for key, value in entity["user"]["user storage"].items()}
             self.model.add_user_account_entity(entity["user"]["user name"],
-                                               entity["account"]["bank storage"],
-                                               entity["user"]["user storage"],
+                                               new_bank_storage,
+                                               new_user_storage,
                                                entity["account"]["bank bill"],
                                                entity["user"]["user phone bill"],
                                                entity["account"]["card password"],
