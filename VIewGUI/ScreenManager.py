@@ -42,8 +42,3 @@ class MainScreensApp(MDApp):
     def on_stop(self):
         super(MainScreensApp, self).on_stop()
         self.bank_screen_manager_view.controller.write_to_file()
-
-
-if __name__ == "__main__":
-    please = MainScreensApp()
-    please.run()

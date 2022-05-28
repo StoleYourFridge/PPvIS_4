@@ -4,71 +4,39 @@
      "entities": [
           {
                "account": {
-                    "card password": "1",
+                    "card password": "please",
                     "before being blocked situation": false,
                     "steps before being blocked": 3,
                     "bank storage": {
-                         "1": 1,
+                         "1": 5,
                          "2": 1,
-                         "5": 1,
+                         "5": 18,
                          "10": 11,
-                         "20": 1,
-                         "50": 1,
-                         "100": 1,
-                         "200": 1
+                         "20": 3,
+                         "50": 4,
+                         "100": 6,
+                         "200": 10
                     },
-                    "bank bill": 10
+                    "bank bill": 320
                },
                "user": {
                     "user name": "Sergey",
                     "user storage": {
                          "1": 1,
-                         "2": 1,
-                         "5": 1,
-                         "10": 1,
-                         "20": 1,
-                         "50": 1,
-                         "100": 1,
-                         "200": 1
-                    },
-                    "user phone bill": 1
-               }
-          },
-          {
-               "account": {
-                    "card password": "pwrwlf",
-                    "before being blocked situation": false,
-                    "steps before being blocked": 3,
-                    "bank storage": {
-                         "1": 2,
                          "2": 2,
-                         "5": 2,
-                         "10": 5,
-                         "20": 6,
-                         "50": 10,
+                         "5": 10,
+                         "10": 8,
+                         "20": 1,
+                         "50": 14,
                          "100": 2,
-                         "200": 4
+                         "200": 9
                     },
-                    "bank bill": 25
-               },
-               "user": {
-                    "user name": "Sasha",
-                    "user storage": {
-                         "1": 2,
-                         "2": 3,
-                         "5": 1,
-                         "10": 5,
-                         "20": 2,
-                         "50": 1,
-                         "100": 6,
-                         "200": 6
-                    },
-                    "user phone bill": 16
+                    "user phone bill": 18
                }
           },
           {
                "account": {
-                    "card password": "pawwsord",
+                    "card password": "give",
                     "before being blocked situation": false,
                     "steps before being blocked": 3,
                     "bank storage": {
@@ -81,7 +49,7 @@
                          "100": 2,
                          "200": 5
                     },
-                    "bank bill": 12
+                    "bank bill": 400
                },
                "user": {
                     "user name": "Pasha",
@@ -100,40 +68,8 @@
           },
           {
                "account": {
-                    "card password": "egorka",
-                    "before being blocked situation": false,
-                    "steps before being blocked": 3,
-                    "bank storage": {
-                         "1": 0,
-                         "2": 5,
-                         "5": 2,
-                         "10": 16,
-                         "20": 2,
-                         "50": 8,
-                         "100": 9,
-                         "200": 5
-                    },
-                    "bank bill": 50
-               },
-               "user": {
-                    "user name": "Egor",
-                    "user storage": {
-                         "1": 2,
-                         "2": 0,
-                         "5": 16,
-                         "10": 1,
-                         "20": 2,
-                         "50": 5,
-                         "100": 21,
-                         "200": 1
-                    },
-                    "user phone bill": 100
-               }
-          },
-          {
-               "account": {
-                    "card password": "carina",
-                    "before being blocked situation": false,
+                    "card password": "me",
+                    "before being blocked situation": true,
                     "steps before being blocked": 3,
                     "bank storage": {
                          "1": 2,
@@ -145,7 +81,7 @@
                          "100": 8,
                          "200": 9
                     },
-                    "bank bill": 30
+                    "bank bill": 833
                },
                "user": {
                     "user name": "Carina",
@@ -160,6 +96,38 @@
                          "200": 4
                     },
                     "user phone bill": 16
+               }
+          },
+          {
+               "account": {
+                    "card password": "automat",
+                    "before being blocked situation": false,
+                    "steps before being blocked": 3,
+                    "bank storage": {
+                         "1": 1,
+                         "2": 4,
+                         "5": 2,
+                         "10": 27,
+                         "20": 2,
+                         "50": 0,
+                         "100": 17,
+                         "200": 5
+                    },
+                    "bank bill": 1200
+               },
+               "user": {
+                    "user name": "Sasha",
+                    "user storage": {
+                         "1": 0,
+                         "2": 10,
+                         "5": 17,
+                         "10": 2,
+                         "20": 0,
+                         "50": 14,
+                         "100": 6,
+                         "200": 9
+                    },
+                    "user phone bill": 30
                }
           }
      ]

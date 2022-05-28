@@ -1,6 +1,6 @@
 from Model.BankModel import BankModel
 from Model.BankComponents.BankCard import DEFAULT_AMOUNT_OF_STEPS
-from Model.BankComponents.BanknotesStorage import BANKNOTES_DENOMINATIONS
+from Model.BankComponents.BanknotesStorage import BANKNOTES_DENOMINATIONS, decimal_to_storage
 import json
 
 
@@ -14,6 +14,40 @@ class BankController:
             storage_denominations[index] = int(storage_denominations[index])
             if storage_denominations[index] < 0:
                 raise NameError("DataWithWrongValue")
+
+    @staticmethod
+    def integer_values_checker(first,
+                               second):
+        try:
+            first = int(first)
+            second = int(second)
+            if first < 0 or second < 0:
+                raise NameError("DataWithWrongValue")
+        except ValueError:
+            return "DataWithWrongType"
+        except NameError:
+            return "DataWithWrongValue"
+        return 0
+
+    @staticmethod
+    def add_user_account_entity_value_checker(bank_storage_value,
+                                              user_storage_value):
+        answer = BankController.integer_values_checker(bank_storage_value,
+                                                       user_storage_value)
+        if answer == "DataWithWrongType" or answer == "DataWithWrongValue":
+            return answer
+        return (bill_to_storage_denomination_list(int(bank_storage_value)),
+                bill_to_storage_denomination_list(int(user_storage_value)))
+
+    @staticmethod
+    def increase_with_storage_value_checker(denomination,
+                                            amount):
+        answer = BankController.integer_values_checker(denomination,
+                                                       amount)
+        if answer == "DataWithWrongType" or answer == "DataWithWrongValue":
+            return answer
+        return denomination_and_amount_to_storage_denomination_list(int(denomination),
+                                                                    int(amount))
 
     def add_user_account_entity_validated(self,
                                           user_name,
@@ -149,18 +183,14 @@ class BankController:
 
     def write_to_file(self):
         info = self.model.get_info()
-        with open("../Model/BankData.json", "w") as f:
+        with open("Model/BankData.json", "w") as f:
             json.dump(info, f, indent=5)
 
     def read_from_file(self):
-        with open("../Model/BankData.json", "r") as f:
+        with open("Model/BankData.json", "r") as f:
             info = json.load(f)
         if len(info) == 0:
             return
-        if info["current working entity"]:
-            self.model.set_current_working_entity(info["current working entity"])
-        if info["authorized"]:
-            self.model.set_authorized(info["authorized"])
         entities = info["entities"]
         for entity in entities:
             new_bank_storage = {int(key): value for key, value in entity["account"]["bank storage"].items()}
@@ -173,3 +203,21 @@ class BankController:
                                                entity["account"]["card password"],
                                                entity["account"]["before being blocked situation"],
                                                entity["account"]["steps before being blocked"])
+        if info["current working entity"] is not None:
+            self.model.set_current_working_entity(info["current working entity"] + 1)
+        if info["authorized"] is not None:
+            self.model.set_authorized(info["authorized"])
+
+
+def bill_to_storage_denomination_list(number):
+    return list(decimal_to_storage(number).values())
+
+
+def denomination_and_amount_to_storage_denomination_list(denomination,
+                                                         amount):
+    storage = [0 for index in range(len(BANKNOTES_DENOMINATIONS))]
+    try:
+        storage[BANKNOTES_DENOMINATIONS.index(denomination)] = amount
+    except ValueError:
+        return "DataWithWrongValue"
+    return storage

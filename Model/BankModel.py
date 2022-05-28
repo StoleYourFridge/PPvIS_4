@@ -33,7 +33,7 @@ class BankModel:
 
     def set_current_working_entity(self,
                                    number):
-        if 0 >= number > len(self.users):
+        if number <= 0 or number > len(self.users):
             raise NameError("DataWithWrongValue")
         self.current_working_entity = number - 1
         self.set_authorized(False)
@@ -160,8 +160,8 @@ class BankModel:
         return self.accounts[self.current_working_entity].bill
 
     def get_user_cash_storage(self):
-        if self.current_working_entity is None:
-            return "CurrentWorkingEntityMissed"
+        if not self.authorized:
+            return "NotAuthorized"
         return dict(self.users[self.current_working_entity].storage.get_storage_banknotes())
 
     def get_bank_account_storage(self):
@@ -174,6 +174,8 @@ class BankModel:
         return usernames
 
     def get_amount_of_attempts(self):
+        if self.current_working_entity is None:
+            return "CurrentWorkingEntityMissed"
         return self.accounts[self.current_working_entity].bank_card.get_steps_before_being_blocked()
 
     def get_info(self):
